@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+}
+
+body {
+	margin: 0;
+	font-family: 'Inter', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: 'Inter', sans-serif;
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 500;
+	src: local('Inter'), url('../public/font/Inter-Regular.woff2') format('woff2');
+	/* Ajoutez d'autres formats de police au besoin (ttf, etc.) */
+}
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 600; /* Semibold */
+	src: local('Inter'),
+		url('../public/font/Inter-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700; /* Bold */
+	src: local('Inter'), url('../public/font/Inter-Bold.woff2') format('woff2');
+}
+
+/* Personnalisation de la barre de défilement pour WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #9ca7b6;
+	border-radius: 4px;
+}
+
+/* Personnalisation de la barre de défilement pour Firefox */
+/* À ajouter si nécessaire */
+
+.italic-placeholder::placeholder {
+	font-style: italic;
+}
+
+.custom-audio {
+	display: inline-block;
+	width: 100%; /* Définissez la largeur comme vous le souhaitez */
+	height: 27px; /* Ajustez la hauteur en conséquence */
+	background-color: #002eff; /* Couleur de fond */
+	color: white; /* Couleur du texte */
+	padding: 2px; /* Espacement interne */
+
+	border-radius: 18px; /* Bordure arrondie */
+	outline: none; /* Supprime la bordure de mise au point */
+	/* Ombre */
+}
+
+/* Styles pour les contrôles audio (optionnel) */
+.custom-audio::-webkit-media-controls-panel {
+	background-color: #ffd100; /* Couleur de fond pour les contrôles */
+	/* Couleur du texte pour les contrôles */
+	/* Bordure arrondie pour les contrôles */
+	outline: none;
+	filter: invert(100%);
+}
+
+.custom-checkbox {
+	width: 18px; /* ajustez la largeur selon vos besoins */
+	height: 18px; /* ajustez la hauteur selon vos besoins */
+	border: 10px solid black; /* couleur de la bordure */
+	margin-right: 5px; /* espace à droite de la checkbox */
+}
