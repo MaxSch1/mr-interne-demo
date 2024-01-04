@@ -81,7 +81,7 @@ const LanguageSelector = ({ onLanguageChange }) => {
 			</div>
 
 			{dropdownVisible && (
-				<div className='absolute mt-1 text-blue-600'>
+				<div className='absolute mt-1 text-blue-600 text-left px-2 z-50 bg-white rounded border border-gray-300'>
 					{/* Custom dropdown content */}
 					<div
 						className='cursor-pointer'

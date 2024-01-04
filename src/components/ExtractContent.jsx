@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 const useApiResponse = () => {
 	const [data, setData] = useState('');
 	const [loading, setLoading] = useState(false);
-
+	// const [isWriting, setIsWriting] = useState(true);
+	// setIsWriting(true);
 	useEffect((response) => {
 		const fetchData = async (response) => {
 			try {
@@ -46,9 +47,11 @@ const useApiResponse = () => {
 				// Handle errors during streaming
 			}
 		};
+		
 		fetchData(response);
+		// setIsWriting(false);
 	}, []);
-
+	console.log("AAASSASAS",data)
 	return { data };
 };
 

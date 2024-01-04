@@ -180,7 +180,7 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 								stroke-linejoin='round'
 							/>
 						</svg>
-						{recording ? <>{<RectangleGenerator count={80} />}</> : ''}
+						{recording ? <>{<RectangleGenerator count={50} />}</> : ''}
 					</button>
 				</label>
 				<input
@@ -194,7 +194,7 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 					type='text'
 					value={inputText}
 					onChange={(e) => setInputText(e.target.value)}
-					maxLength={250}
+					maxLength={750}
 					placeholder={placeholder}
 					className={` ${
 						recording ? ' bg-[#002EFF]' : 'bg-white '
@@ -206,7 +206,8 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 					type='submit'
 					className={`absolute right-0 text-white rounded-full py-2 px-1.5 mr-1 my-1  ${
 						recording ? 'bg-white ' : 'bg-[#002EFF] '
-					}`}>
+					}`}
+					disabled={disabled}>
 					<svg
 						width='18'
 						height='18'

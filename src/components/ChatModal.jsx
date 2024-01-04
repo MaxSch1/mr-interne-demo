@@ -13,10 +13,10 @@ const ChatModal = () => {
 	const [messages, setMessages] = useState([]);
 	const [userMessage, setUserMessage] = useState('');
 	const [suggestions, setSuggestion] = useState([
-		"Qu'est ce que me MR?",
-		'What features do Meridiem’s chatbot have?',
-		'Who is  the president?',
-		'Tell me more...',
+		"Qu'est ce que le MR?",
+			'Quels améliorations proposez-vous pour les transports publics ?',
+			'Quelles sont vos solutions pour la crise du logement ?',
+			'Comptez-vous augmenter ou diminuer les impôts ?',
 	]);
 	const [prevContent, setPrevContent] = useState('');
 	const [prevUserMessage, setPrevUserMessage] = useState('');
@@ -122,7 +122,7 @@ const ChatModal = () => {
 			// Gérer les erreurs d'API
 		}
 	};
-
+	
 	const sendUserMessageAndAIResponseToHistory = async (
 		userMessage,
 		aiResponse
@@ -181,8 +181,9 @@ const ChatModal = () => {
 	// }, [content]);
 
 	const handleSuggestionClick = (suggestion) => {
-		addMessage(suggestion, true);
-		// Ajoutez ici la logique pour traiter la suggestion sélectionnée
+		if (!isWriting) {
+			addMessage(suggestion, true);
+		}
 	};
 	useEffect(() => {
 		// Vérifiez si le cookie 'ChatID' existe
@@ -210,13 +211,13 @@ const ChatModal = () => {
 		setMessages([]);
 		setHistory([]);
 		setSuggestion([
-			"Qu'est ce que me MR?",
-			'What features do Meridiem’s chatbot have?',
-			'Who is  the president?',
-			'Tell me more...',
+			"Qu'est ce que le MR?",
+			'Quels améliorations proposez-vous pour les transports publics ?',
+			'Quelles sont vos solutions pour la crise du logement ?',
+			'Comptez-vous augmenter ou diminuer les impôts ?',
 		]);
 	};
-
+	// console.log("MESSAGES", messages)
 	return (
 		<div
 			className={` fixed top-0 left-0 w-full h-full flex items-center bg-black bg-opacity-40`}>
@@ -253,22 +254,24 @@ const ChatModal = () => {
 					/>
 					<div className='flex items-center justify-center'>
 						<a
-							className='flex items-center text-xs my-1 mx-2 '
-							href='#'>
+							className='flex items-center text-xs my-1 mx-2'
+							href='https://www.meridiem.be/home'
+							target='_blank' rel='noopener noreferrer'>
 							<div className='mx-2 my-1 flex-shrink-0 bg-[#1B163C] rounded-md'>
 								<img
 									src='/logo.png'
 									alt=''
-									className='object-none w-full h-full  min-w-min'
+									className='object-none w-full h-full min-w-min'
 								/>
 							</div>
 							<span className='flex-shrink-0'>powered by</span>
-							<span className='underline ml-1 flex-shrink-0'> Meridiem</span>
+							<span className='underline ml-1 flex-shrink-0'>Meridiem</span>
 						</a>
 						<span className='text-xs my-1 max-sm:hidden text-gray-400 mx-2'>
 							Ce chat est en version beta, certaines informations peuvent être inexactes ou biaisées.
 						</span>
 					</div>
+
 				</div>
 			</div>
 		</div>
