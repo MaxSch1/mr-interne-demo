@@ -167,7 +167,7 @@ const ChatMessage = ({
 					</svg>
 				) : (
 					<img
-						src='/logo.png'
+						src='https://ui-chatbot1.s3.eu-north-1.amazonaws.com/WhatsApp+Image+2024-01-04+%C3%A0+18.29+1+(1).png'
 						alt=''
 						className=' mx-1 my-2 min-w-min absolute top-0 -left-5'
 					/>
@@ -175,7 +175,7 @@ const ChatMessage = ({
 				<div className='flex-col py-2 pl-6 mb-5 w-full'>
 					<div className='flex w-full'>
 						<span className='text-base font-bold block align-middle whitespace-nowrap'>
-							{message.isUser ? 'You' : 'MR AI assistant'}
+							{message.isUser ? 'You' : 'Liloo AI'}
 						</span>
 						{message.isUser && isLastMessage
 							? ''
@@ -184,8 +184,7 @@ const ChatMessage = ({
 										textToSpeak={message.text}
 										isLastMessage
 										audioOn={audioOn}
-										selectLanguage = {selectLanguage}
-									/>
+																			/>
 							  )}
 					</div>
 					<span className='text-justify max-w-prose text-base font-medium '>

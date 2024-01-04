@@ -259,7 +259,7 @@ const ChatModal = () => {
 							target='_blank' rel='noopener noreferrer'>
 							<div className='mx-2 my-1 flex-shrink-0 bg-[#1B163C] rounded-md'>
 								<img
-									src='/logo.png'
+									src='https://ui-chatbot1.s3.eu-north-1.amazonaws.com/LOGO_32.png'
 									alt=''
 									className='object-none w-full h-full min-w-min'
 								/>
@@ -268,7 +268,7 @@ const ChatModal = () => {
 							<span className='underline ml-1 flex-shrink-0'>Meridiem</span>
 						</a>
 						<span className='text-xs my-1 max-sm:hidden text-gray-400 mx-2'>
-							Ce chat est en version beta, certaines informations peuvent être inexactes ou biaisées.
+							Ce chat est en version beta, certaines fonctionnalités et éléments de l'interface ont volontairement été temporairement désactives.
 						</span>
 					</div>
 

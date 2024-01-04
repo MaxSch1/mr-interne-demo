@@ -10,7 +10,7 @@ const Disclaimer = ({ onIDGenerated, show }) => {
 	useEffect(() => {
 		setShowDisclaimer(show);
 		setAcceptedConditions(false);
-		setCaptchaSuccess(false);
+		setCaptchaSuccess(true);
 	}, [show]);
 
 	const handleCaptchaSuccess = () => {
@@ -46,12 +46,7 @@ const Disclaimer = ({ onIDGenerated, show }) => {
 				<p className='text-xl font-semibold my-5'>Conditions d'utilisation:</p>
 				<div className='text-left'>
 					<p className='text-base my-4'>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-						ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-						ad minim veniam, quis nostrud
+					En utilisant le représentant ia du MR, vous consentez à ce que toutes les données fournies soient sauvegardées et utilisées pour le fonctionnement du service. Le MR et Meridiem ne garantissent pas l'exactitude ou l'intention des réponses de l'IA et déclinent toute responsabilité en cas de divulgation de données ou de réponses inexactes ou malveillantes.
 					</p>
 				</div>
 				<div className='flex justify-center items-center my-4'>
@@ -74,11 +69,11 @@ const Disclaimer = ({ onIDGenerated, show }) => {
 					</div>
 				</div>
 
-				<ReCAPTCHA
+				{/* <ReCAPTCHA
 					sitekey='votre-clé-recaptcha'
 					onChange={handleCaptchaSuccess}
-					className='flex justify-center items-center'
-				/>
+					className='flex justify-center items-center' */}
+				{/* /> */}
 				<button
 					onClick={handleDisclaimerClose}
 					className={`${
