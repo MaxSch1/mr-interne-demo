@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/testmac/static/css/main.72112781.css",
+    "main.js": "/testmac/static/js/main.943a2189.js",
+    "static/js/787.c9346b14.chunk.js": "/testmac/static/js/787.c9346b14.chunk.js",
+    "static/media/Inter-SemiBold.woff2": "/testmac/static/media/Inter-SemiBold.3be6b9e3b22c24eaada7.woff2",
+    "static/media/Inter-Bold.woff2": "/testmac/static/media/Inter-Bold.c3c9f10a4dbfc7314a59.woff2",
+    "static/media/Inter-Regular.woff2": "/testmac/static/media/Inter-Regular.76224c7fa303861462e7.woff2",
+    "index.html": "/testmac/index.html",
+    "main.72112781.css.map": "/testmac/static/css/main.72112781.css.map",
+    "main.943a2189.js.map": "/testmac/static/js/main.943a2189.js.map",
+    "787.c9346b14.chunk.js.map": "/testmac/static/js/787.c9346b14.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.72112781.css",
+    "static/js/main.943a2189.js"
+  ]
+}
