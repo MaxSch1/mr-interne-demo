@@ -19,20 +19,20 @@ const ChatModal = () => {
 			'Quelles sont vos solutions pour la crise du logement ?',
 			'Comptez-vous augmenter ou diminuer les impôts ?',
 	]);
-	const [prevContent, setPrevContent] = useState('');
-	const [prevUserMessage, setPrevUserMessage] = useState('');
+	// const [prevContent, setPrevContent] = useState('');
+	// const [prevUserMessage, setPrevUserMessage] = useState('');
 	const [selectLanguage, setSelectLanguage] = useState('fr');
 	const [isAudioOn, setIsAudioOn] = useState(true);
 	const [history, setHistory] = useState([]);
 	const [isWriting, setIsWriting] = useState(false);
 	const [generatedID, setGeneratedID] = useState(null);
 	const [showDisclaimer, setShowDisclaimer] = useState(true);
-	const [dataFromChild, setDataFromChild] = useState('');
+	// const [dataFromChild, setDataFromChild] = useState('');
 	const [chunks, setChunks] = useState('');
 
 	const handleDataFromChild = (data) => {
 		// La fonction de rappel pour remonter les données du composant enfant
-		setDataFromChild(data);
+		// setDataFromChild(data);
 setChunks(data);
 	};
 		const handleLanguageChange = (selectedLanguage) => {
@@ -189,6 +189,7 @@ setChunks(data);
 	}, 1000); // Adjust the delay as needed
 
 		return () => clearTimeout(timerId);
+// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [chunks, userMessage]);
 
 	const handleSuggestionClick = (suggestion) => {
@@ -210,6 +211,7 @@ setChunks(data);
 			setShowDisclaimer(true);
 			setMessages([]);
 		}
+// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [showDisclaimer, generatedID]);
 
 
@@ -270,7 +272,7 @@ setChunks(data);
 					/>
 					<div className='flex items-center justify-between'>
 						<a
-							className='flex items-center text-xs my-1 mx-2'
+							className='flex items-center text-xs my-1 mx-0.5  md:mx-6'
 							href='https://www.meridiem.be/home'
 							target='_blank' rel='noopener noreferrer'>
 							<div className='mx-2 my-1 flex-shrink-0 bg-[#1B163C] rounded-md'>
@@ -283,7 +285,7 @@ setChunks(data);
 							<span className='flex-shrink-0'>powered by</span>
 							<span className='underline ml-1 flex-shrink-0'> Meridiem</span>
 						</a>
-						<span className='text-xs my-1 max-sm:hidden text-gray-400 mx-2'>
+						<span className='text-xs my-1 max-sm:hidden text-gray-400 mx-2 md:mx-7'>
 							Ce chat est en version beta, certaines fonctionnalités et éléments de l'interface ont volontairement été temporairement désactives.
 						</span>
 					</div>

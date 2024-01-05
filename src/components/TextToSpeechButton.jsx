@@ -59,6 +59,7 @@ setChunks('');
 		if (audioOn && chunks !== '') {
 			handleTextToSpeech();
 		}
+// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [audioOn, chunks]);
 
 useEffect(() => {
@@ -85,16 +86,16 @@ useEffect(() => {
 					<path
 						d='M8.25 3.95825L4.5 7.12492H1.5V11.8749H4.5L8.25 15.0416V3.95825Z'
 						stroke='white'
-						stroke-width='2'
-						stroke-linecap='round'
-						stroke-linejoin='round'
+						strokeWidth='2'
+						strokeLinecap='round'
+						strokeLinejoin='round'
 					/>
 					<path
 						d='M14.3025 3.90283C15.7086 5.38743 16.4984 7.4007 16.4984 9.49992C16.4984 11.5991 15.7086 13.6124 14.3025 15.097M11.655 6.69742C12.358 7.43971 12.753 8.44635 12.753 9.49596C12.753 10.5456 12.358 11.5522 11.655 12.2945'
 						stroke='white'
-						stroke-width='2'
-						stroke-linecap='round'
-						stroke-linejoin='round'
+						strokeWidth='2'
+						strokeLinecap='round'
+						strokeLinejoin='round'
 					/>
 				</svg>
 			</button>

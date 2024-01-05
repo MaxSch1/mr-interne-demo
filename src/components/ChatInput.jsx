@@ -145,7 +145,7 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 						disabled={disabled}
 						className={`bg-[#002EFF] text-white rounded-full  py-2 ${
 							recording ? 'w-full h-full  pl-4 ' : 'mr-2 ml-1 my-1 px-3'
-						} absolute left-0 flex items-center `}>
+						} absolute top-0 flex items-center `}>
 						<svg
 							width='11'
 							height='18'
@@ -155,30 +155,30 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 							<path
 								d='M7.22694 1C6.51912 1 5.84029 1.28118 5.33979 1.78168C4.83928 2.28219 4.55811 2.96101 4.55811 3.66883V10.7857C4.55811 11.4935 4.83928 12.1724 5.33979 12.6729C5.84029 13.1734 6.51912 13.4545 7.22694 13.4545C7.93475 13.4545 8.61358 13.1734 9.11409 12.6729C9.61459 12.1724 9.89577 11.4935 9.89577 10.7857V3.66883C9.89577 2.96101 9.61459 2.28219 9.11409 1.78168C8.61358 1.28118 7.93475 1 7.22694 1Z'
 								stroke='white'
-								stroke-width='2'
-								stroke-linecap='round'
-								stroke-linejoin='round'
+								strokeWidth='2'
+								strokeLinecap='round'
+								strokeLinejoin='round'
 							/>
 							<path
 								d='M13.4545 9.00648V10.7857C13.4545 12.4373 12.7985 14.0212 11.6306 15.189C10.4628 16.3569 8.87885 17.013 7.22727 17.013C5.5757 17.013 3.99177 16.3569 2.82393 15.189C1.65609 14.0212 1 12.4373 1 10.7857V9.00648'
 								stroke='white'
-								stroke-width='2'
-								stroke-linecap='round'
-								stroke-linejoin='round'
+								strokeWidth='2'
+								strokeLinecap='round'
+								strokeLinejoin='round'
 							/>
 							<path
 								d='M7.22705 17.013V20.5714'
 								stroke='white'
-								stroke-width='2'
-								stroke-linecap='round'
-								stroke-linejoin='round'
+								strokeWidth='2'
+								strokeLinecap='round'
+								strokeLinejoin='round'
 							/>
 							<path
 								d='M3.66895 20.5715H10.7858'
 								stroke='white'
-								stroke-width='2'
-								stroke-linecap='round'
-								stroke-linejoin='round'
+								strokeWidth='2'
+								strokeLinecap='round'
+								strokeLinejoin='round'
 							/>
 						</svg>
 						{recording ? <>{<RectangleGenerator count={80} />}</> : ''}
@@ -199,7 +199,7 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 					placeholder={placeholder}
 					className={` ${
 						recording ? ' bg-[#002EFF]' : 'bg-white '
-					}w-full  p-2 pl-12 pr-12 rounded-full  italic-placeholder border-[1px] focus:outline-none `}
+					} w-full  p-2 pl-12 pr-12 rounded-full  italic-placeholder border-[1px] focus:outline-none `}
 					style={{ boxShadow: '3px 4px 3px rgba(0, 0, 0, 0.2)' }}
 					disabled={disabled} // pl-10 pour laisser de l'espace pour le bouton audio
 				/>

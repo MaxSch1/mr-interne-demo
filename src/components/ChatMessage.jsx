@@ -123,18 +123,20 @@ setLoading(false);
 		} else if (!message.isUser) {
 			fetchData(message.text);
 		}
+// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data, message.text]);
 
 	useEffect(() => {
 		if (!loading) {
 			onDataFromChild(data);
 		}
+// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
 
 	return (
 		<div className='  text-left mx-auto w-11/12 '>
 			<div
-				className={`flex mx-2 my-2 ${
+				className={` mx-2 my-2 ${
 					isLastMessage ? '' : 'border-b-2'
 				} border-[#D0D3DB] relative w-full`}>
 				{message.isUser ? (
@@ -144,7 +146,7 @@ setLoading(false);
 						viewBox='0 0 30 30'
 						fill='none'
 						xmlns='http://www.w3.org/2000/svg'
-						className=' mx-1 my-2 min-w-min absolute top-0 -left-5'>
+						className=' mx-1 my-2  absolute top-0 -left-5'>
 						<rect
 							x='0.5'
 							y='0.5'
@@ -156,16 +158,16 @@ setLoading(false);
 						<path
 							d='M22.0165 23.023V21.3176C22.0165 20.413 21.6571 19.5454 21.0174 18.9058C20.3778 18.2661 19.5102 17.9067 18.6056 17.9067H11.7839C10.8793 17.9067 10.0117 18.2661 9.37206 18.9058C8.7324 19.5454 8.37305 20.413 8.37305 21.3176V23.023'
 							stroke='black'
-							stroke-width='2'
-							stroke-linecap='round'
-							stroke-linejoin='round'
+							strokeWidth='2'
+							strokeLinecap='round'
+							strokeLinejoin='round'
 						/>
 						<path
 							d='M15.1931 14.4958C17.0768 14.4958 18.6039 12.9687 18.6039 11.0849C18.6039 9.20116 17.0768 7.67407 15.1931 7.67407C13.3093 7.67407 11.7822 9.20116 11.7822 11.0849C11.7822 12.9687 13.3093 14.4958 15.1931 14.4958Z'
 							stroke='black'
-							stroke-width='2'
-							stroke-linecap='round'
-							stroke-linejoin='round'
+							strokeWidth='2'
+							strokeLinecap='round'
+							strokeLinejoin='round'
 						/>
 					</svg>
 				) : (

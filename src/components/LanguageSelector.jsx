@@ -33,16 +33,16 @@ const LanguageSelector = ({ onLanguageChange }) => {
 							<path
 								d='M9.50016 17.4166C13.8724 17.4166 17.4168 13.8722 17.4168 9.49992C17.4168 5.12766 13.8724 1.58325 9.50016 1.58325C5.12791 1.58325 1.5835 5.12766 1.5835 9.49992C1.5835 13.8722 5.12791 17.4166 9.50016 17.4166Z'
 								stroke='#002EFF'
-								stroke-width='2'
-								stroke-linecap='round'
-								stroke-linejoin='round'
+								strokeWidth='2'
+								strokeLinecap='round'
+								strokeLinejoin='round'
 							/>
 							<path
 								d='M1.5835 9.5H17.4168'
 								stroke='#002EFF'
-								stroke-width='2'
-								stroke-linecap='round'
-								stroke-linejoin='round'
+								strokeWidth='2'
+								strokeLinecap='round'
+								strokeLinejoin='round'
 							/>
 							<path
 								d='M9.50016 1.58325C11.4803 3.75111 12.6057 6.56445 12.6668 9.49992C12.6057 12.4354 11.4803 15.2487 9.50016 17.4166C7.51998 15.2487 6.39465 12.4354 6.3335 9.49992C6.39465 6.56445 7.51998 3.75111 9.50016 1.58325Z'
@@ -71,9 +71,9 @@ const LanguageSelector = ({ onLanguageChange }) => {
 						<path
 							d='M1 1L3.5 4L6 1'
 							stroke='#002EFF'
-							stroke-width='1.7'
-							stroke-linecap='round'
-							stroke-linejoin='round'
+							strokeWidth='1.7'
+							strokeLinecap='round'
+							strokeLinejoin='round'
 						/>
 					</svg>
 				</div>
