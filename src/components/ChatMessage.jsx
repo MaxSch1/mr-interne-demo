@@ -11,6 +11,7 @@ const ChatMessage = ({
 	audioOn,
 	selectLanguage,
 	onDataFromChild,
+	handleIsWriting,
 }) => {
 	const [userAgreed, setUserAgreed] = useState(false);
 	const [userDisagreed, setUserDisagreed] = useState(false);
@@ -110,6 +111,7 @@ const ChatMessage = ({
 						}
 					});
 				}
+				handleIsWriting(loading);
 			} catch (error) {
 				setLoading(false);
 				// Handle errors during streaming
@@ -181,9 +183,10 @@ const ChatMessage = ({
 							? ''
 							: isLastMessage && (
 									<TextToSpeechButton
-										textToSpeak={message.text}
+										textToSpeak={data}
 										isLastMessage
 										audioOn={audioOn}
+										selectLanguage = {selectLanguage}
 																			/>
 							  )}
 					</div>

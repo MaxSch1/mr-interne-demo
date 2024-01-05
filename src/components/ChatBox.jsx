@@ -3,7 +3,13 @@
 import React, { useRef, useEffect } from 'react';
 import ChatMessage from './ChatMessage';
 
-const ChatBox = ({ messages, audioOn, selectLanguage, onDataFromChild }) => {
+const ChatBox = ({
+	messages,
+	audioOn,
+	selectLanguage,
+	onDataFromChild,
+	handleIsWriting,
+}) => {
 	const chatBoxRef = useRef(null);
 	const getLastUserMessage = (messages, currentIndex) => {
 		for (let i = currentIndex - 1; i >= 0; i--) {
@@ -31,6 +37,7 @@ const ChatBox = ({ messages, audioOn, selectLanguage, onDataFromChild }) => {
 					audioOn={audioOn}
 					selectLanguage={selectLanguage}
 					onDataFromChild={onDataFromChild}
+handleIsWriting={handleIsWriting}
 				/>
 			))}
 		</div>

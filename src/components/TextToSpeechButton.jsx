@@ -6,12 +6,15 @@ const TextToSpeechButton = ({ textToSpeak, isLastMessage, audioOn, selectLanguag
 	const [audioFile, setAudioFile] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [audioVisible, setAudioVisible] = useState(false);
+const [chunks, setChunks] = useState('');
 
 	const handleTextToSpeech = async () => {
 		try {
 			if (audioVisible) {
 				setAudioVisible(false);
 				setAudioFile(null);
+setChunks('');
+
 				return;
 			}
 			// Set loading state to true
@@ -19,11 +22,11 @@ const TextToSpeechButton = ({ textToSpeak, isLastMessage, audioOn, selectLanguag
 
 			// Make a POST request to the text-to-speech API endpoint
 			console.log('lang for TTS:', selectLanguage);
-			console.log('text for TTS:', textToSpeak);
+			console.log('text for TTS:', chunks);
 
 			const response = await axios.post(
 				'https://cbmr-tts-stt-v2.azurewebsites.net/api/TTSapi?code=yZ3yfJzonO7vsq7seVmOm5gno3wMUYKO3UYVXuRBvvv7AzFuQnsG5g==',
-				{ Ai_message: textToSpeak, auth_key : "Ecp)KyWhR}%kdA5$-C-InQopRp$MTQ8DINtPDY^kQQQZ&[2Q5U", lang: selectLanguage  },
+				{ Ai_message: chunks, auth_key : "Ecp)KyWhR}%kdA5$-C-InQopRp$MTQ8DINtPDY^kQQQZ&[2Q5U", lang: selectLanguage  },
 				{ responseType: 'arraybuffer' }
 			);
 
@@ -31,6 +34,7 @@ const TextToSpeechButton = ({ textToSpeak, isLastMessage, audioOn, selectLanguag
 			const audioUrl = URL.createObjectURL(audioBlob);
 			setAudioVisible(true);
 			setAudioFile(audioUrl);
+			console.log(audioFile);
 		} catch (error) {
 			if (error.response) {
 				// La requête a été effectuée et le serveur a répondu avec un code d'erreur
@@ -50,12 +54,16 @@ const TextToSpeechButton = ({ textToSpeak, isLastMessage, audioOn, selectLanguag
 			setLoading(false);
 		}
 	};
+
 	useEffect(() => {
-		if (audioOn) {
+		if (audioOn && chunks !== '') {
 			handleTextToSpeech();
 		}
-	}, [audioOn]);
+	}, [audioOn, chunks]);
 
+useEffect(() => {
+		setChunks(textToSpeak);
+	}, [textToSpeak]);
 	return (
 		<div
 			className={`ml-1 flex w-2/3 ${

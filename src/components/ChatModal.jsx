@@ -69,6 +69,7 @@ const ChatModal = () => {
 					auth_key: "Q)[[ba%kOSb4$Dsep=hW#^epgqTmC_RFMqRDcd1=pHGbHk1d~d"
 				}
 			);
+// Assurez-vous que response.data a la structure attendue
 			const data = response.data;
 
 			// Adaptation des messages
@@ -116,7 +117,6 @@ const ChatModal = () => {
 				...prevMessages,
 				{ text: response, isUser: false },
 			]);
-			setIsWriting(false);
 		} catch (error) {
 			console.error('Erreur lors de la requête API :', error);
 			// Gérer les erreurs d'API
@@ -128,7 +128,9 @@ const ChatModal = () => {
 		aiResponse
 	) => {
 		try {
-			const response = await axios.post(
+			console.log("MESSAGE TO SENDTO API user",userMessage)
+			console.log("MESSAGE TO SENDTO API AI",aiResponse)
+			await axios.post(
 				'https://cbmr-get-send-chats-api.azurewebsites.net/api/Testdb?code=8dL0T-5a41sWjxn73ARjCm660dP9oF9ytfJRCvhqBm26AzFup69ZFQ==',
 				{
 					ChatID: generatedID,
@@ -157,6 +159,7 @@ const ChatModal = () => {
 			);
 			
 			setSuggestion(response.data);
+
 			// Assurez-vous que la structure de la réponse est correcte
 		} catch (error) {
 			console.error('Erreur lors de la récupération des suggestions :', error);
@@ -165,6 +168,7 @@ const ChatModal = () => {
 	};
 
 	useEffect(() => {
+		
 		if (dataFromChild !== prevContent && userMessage !== prevUserMessage) {
 			sendUserMessageAndAIResponseToHistory(userMessage, dataFromChild);
 			fetchSuggestions(userMessage, dataFromChild,selectLanguage);
@@ -217,7 +221,11 @@ const ChatModal = () => {
 			'Comptez-vous augmenter ou diminuer les impôts ?',
 		]);
 	};
-	// console.log("MESSAGES", messages)
+	const handleIsWriting = (finishMessage) => {
+		setIsWriting(finishMessage);
+		console.log("FINISHMESSAGE",finishMessage);
+	};
+
 	return (
 		<div
 			className={` fixed top-0 left-0 w-full h-full flex items-center bg-black bg-opacity-40`}>
@@ -242,6 +250,7 @@ const ChatModal = () => {
 						audioOn={isAudioOn}
 						selectLanguage={selectLanguage}
 						onDataFromChild={handleDataFromChild}
+						handleIsWriting={handleIsWriting}
 					/>
 					<ChatSuggestions
 						onSuggestionClick={handleSuggestionClick}
@@ -252,7 +261,7 @@ const ChatModal = () => {
 						disabled={isWriting}
 						selectLanguage={selectLanguage}
 					/>
-					<div className='flex items-center justify-center'>
+					<div className='flex items-center justify-between'>
 						<a
 							className='flex items-center text-xs my-1 mx-2'
 							href='https://www.meridiem.be/home'
@@ -261,11 +270,11 @@ const ChatModal = () => {
 								<img
 									src='https://ui-chatbot1.s3.eu-north-1.amazonaws.com/LOGO_32.png'
 									alt=''
-									className='object-none w-full h-full min-w-min'
+									className='object-none w-full h-full  min-w-min'
 								/>
 							</div>
 							<span className='flex-shrink-0'>powered by</span>
-							<span className='underline ml-1 flex-shrink-0'>Meridiem</span>
+							<span className='underline ml-1 flex-shrink-0'> Meridiem</span>
 						</a>
 						<span className='text-xs my-1 max-sm:hidden text-gray-400 mx-2'>
 							Ce chat est en version beta, certaines fonctionnalités et éléments de l'interface ont volontairement été temporairement désactives.

@@ -142,6 +142,7 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 					<button
 						type='button'
 						onClick={recording ? stopRecording : startRecording}
+						disabled={disabled}
 						className={`bg-[#002EFF] text-white rounded-full  py-2 ${
 							recording ? 'w-full h-full  pl-4 ' : 'mr-2 ml-1 my-1 px-3'
 						} absolute left-0 flex items-center `}>
@@ -180,7 +181,7 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 								stroke-linejoin='round'
 							/>
 						</svg>
-						{recording ? <>{<RectangleGenerator count={50} />}</> : ''}
+						{recording ? <>{<RectangleGenerator count={80} />}</> : ''}
 					</button>
 				</label>
 				<input
@@ -203,12 +204,19 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 					disabled={disabled} // pl-10 pour laisser de l'espace pour le bouton audio
 				/>
 				<button
-					type='submit'
+					type={recording ? 'button' : 'submit'}
+                    onClick={recording ? stopRecording : handleSubmit}
 					className={`absolute right-0 text-white rounded-full py-2 px-1.5 mr-1 my-1  ${
 						recording ? 'bg-white ' : 'bg-[#002EFF] '
-					}`}
-					disabled={disabled}>
-					<svg
+					}`}>
+						{recording ? (
+        // SVG for Stop Recording Icon (Placeholder)
+				<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className='ml-1'>
+		<path d="M12.5588 6L5.64338 12.8824L2.5 9.75401" stroke="#002EFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+		</svg>
+    ) : (
+        // SVG for Send Icon (Your SVG)
+        			<svg
 						width='18'
 						height='18'
 						viewBox='0 0 18 18'
@@ -218,8 +226,12 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 						<path
 							d='M16.5689 8.28446C17.1586 8.57928 17.1586 9.42072 16.5689 9.71554L1.15777 17.4211C0.625848 17.6871 -8.95063e-07 17.3003 -8.64295e-07 16.7056L-5.27099e-07 10.1881C-5.21728e-07 10.0842 0.0794329 9.99769 0.182868 9.98879L9.55574 9.18299C9.79772 9.16219 9.80039 8.80921 9.55876 8.78474L0.179847 7.83488C0.0777164 7.82453 -4.00369e-07 7.73855 -3.95058e-07 7.63589L-6.69697e-08 1.29443C-3.62014e-08 0.699721 0.625851 0.312924 1.15777 0.578885L16.5689 8.28446Z'
 							fill={` ${recording ? 'blue' : 'white'}`}
-						/>
-					</svg>
+										/>
+						</svg>
+					)}
+
+					
+					
 				</button>
 			</div>
 		</form>
