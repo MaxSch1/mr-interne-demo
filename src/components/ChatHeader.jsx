@@ -14,8 +14,6 @@ const ChatHeader = ({
 		try {
 			// Utilisez onDownloadClick pour obtenir les informations nécessaires, par exemple l'ID de la conversation
 			console.log(chatId)
-			console.log(chatId)
-			console.log(chatId)
 			const response = await axios.post(
 				'https://cbmr-topdf.azurewebsites.net/api/topdf?code=QXjUfEUuiNvitMdY1IwSAyAMXj7UL4jOugK1H8jdt-usAzFuQ8mT4w==',
 				{
@@ -68,7 +66,7 @@ const ChatHeader = ({
 	return (
 		<div className='flex justify-between items-center absolute top-0 left-0 my-2 w-full pr-5 pl-3'>
 			<div className='flex items-baseline '>
-				<button
+				{/* <button
 					onClick={toggleAudioSelector}
 					className='bg-[#002EFF] text-white p-1 rounded-full mr-1'>
 					{isAudioOn ? (
@@ -127,8 +125,8 @@ const ChatHeader = ({
 								stroke-linecap='round'
 							/>
 						</svg>
-					)}
-				</button>
+					)} */}
+				{/* </button> */}
 
 				{/* Bouton Changer de Langue */}
 				<button className=' mx-1 flex items-baseline'>

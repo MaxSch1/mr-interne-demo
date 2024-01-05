@@ -47,6 +47,7 @@ const ChatMessage = ({
 	};
 	const [agreeButtonText, setAgreeButtonText] = useState('I Agree');
 	const [disagreeButtonText, setDisagreeButtonText] = useState('I Disagree');
+
 	useEffect(() => {
 		// Mettez en place une logique pour changer le texte des boutons en fonction de la langue sélectionnée
 		switch (selectLanguage) {
@@ -87,8 +88,7 @@ const ChatMessage = ({
 					const { value, done } = await reader.read();
 
 					if (done) {
-						setLoading(false);
-						break;
+												break;
 					}
 
 					const decodedChunk = decoder.decode(value, { stream: true });
@@ -111,6 +111,7 @@ const ChatMessage = ({
 						}
 					});
 				}
+setLoading(false);
 				handleIsWriting(loading);
 			} catch (error) {
 				setLoading(false);

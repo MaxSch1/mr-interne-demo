@@ -6,6 +6,7 @@ import ChatInput from './ChatInput';
 import ChatBox from './ChatBox';
 import ChatSuggestions from './ChatSuggestions';
 import ChatHeader from './ChatHeader';
+
 import Disclaimer from './Disclaimer';
 import Cookies from 'js-cookie';
 
@@ -27,14 +28,14 @@ const ChatModal = () => {
 	const [generatedID, setGeneratedID] = useState(null);
 	const [showDisclaimer, setShowDisclaimer] = useState(true);
 	const [dataFromChild, setDataFromChild] = useState('');
+	const [chunks, setChunks] = useState('');
 
 	const handleDataFromChild = (data) => {
 		// La fonction de rappel pour remonter les données du composant enfant
 		setDataFromChild(data);
+setChunks(data);
 	};
-	// const { content, processApiResponse } = useApiResponse();
-
-	const handleLanguageChange = (selectedLanguage) => {
+		const handleLanguageChange = (selectedLanguage) => {
 		setSelectLanguage(selectedLanguage);
 		console.log((`LANGUEtestla: ${selectLanguage}`));
 	};
@@ -126,24 +127,34 @@ const ChatModal = () => {
 	const sendUserMessageAndAIResponseToHistory = async (
 		userMessage,
 		aiResponse
-	) => {
-		try {
-			console.log("MESSAGE TO SENDTO API user",userMessage)
-			console.log("MESSAGE TO SENDTO API AI",aiResponse)
-			await axios.post(
-				'https://cbmr-get-send-chats-api.azurewebsites.net/api/Testdb?code=8dL0T-5a41sWjxn73ARjCm660dP9oF9ytfJRCvhqBm26AzFup69ZFQ==',
-				{
-					ChatID: generatedID,
-					auth_key : "Q)[[ba%kOSb4$Dsep=hW#^epgqTmC_RFMqRDcd1=pHGbHk1d~d",
-					User_message: userMessage,
-					AI_message: aiResponse,
-				}
-			);
-		} catch (error) {
-			console.error("Erreur lors de la requête API pour l'historique :", error);
-			// Gérer les erreurs d'API pour l'historique
+	  ) => {
+		// console.log("prevUsermessage", prevUserMessage);
+		
+		// Check if userMessage or aiResponse is empty, or if userMessage hasn't changed
+		if (!userMessage.trim() || !aiResponse.trim()) {
+		  console.log("Conditions not met for sending message to API");
+		  return; // Exit the function early
 		}
-	};
+	  
+		try {
+		  console.log("FROM USER: ", userMessage);
+		  console.log("FROM AI: ", aiResponse);
+		  console.log("FROM GID: ", generatedID);
+		  const response = await axios.post(
+			'https://cbmr-get-send-chats-api.azurewebsites.net/api/Testdb?code=8dL0T-5a41sWjxn73ARjCm660dP9oF9ytfJRCvhqBm26AzFup69ZFQ==',
+			{
+			  ChatID: generatedID,
+			  auth_key : "Q)[[ba%kOSb4$Dsep=hW#^epgqTmC_RFMqRDcd1=pHGbHk1d~d",
+			  User_message: userMessage,
+			  AI_message: aiResponse,
+			}
+		  );
+		  console.log(response);
+		} catch (error) {
+		  console.error("Erreur lors de la requête API pour l'historique :", error);
+		  // Handle API errors for history here
+		}
+	  };
 
 	const fetchSuggestions = async (userMessage, IAmessage,selectedLanguage) => {
 		try {
@@ -157,7 +168,7 @@ const ChatModal = () => {
 					auth_key: "WiDAFu3p}^(co%RponDjEF@LPK#$QvE7@$z~Png9ifB8c5;Qcd",
 				}
 			);
-			
+			console.log(response);
 			setSuggestion(response.data);
 
 			// Assurez-vous que la structure de la réponse est correcte
@@ -168,21 +179,17 @@ const ChatModal = () => {
 	};
 
 	useEffect(() => {
-		
-		if (dataFromChild !== prevContent && userMessage !== prevUserMessage) {
-			sendUserMessageAndAIResponseToHistory(userMessage, dataFromChild);
-			fetchSuggestions(userMessage, dataFromChild,selectLanguage);
-			setPrevContent(dataFromChild);
-			setPrevUserMessage(userMessage);
-		}
-	}, [dataFromChild, userMessage, prevContent, prevUserMessage]);
+		const timerId = setTimeout(() => {
+			if (chunks !== '') {
+				if (isWriting) {
+			sendUserMessageAndAIResponseToHistory(userMessage, chunks);
+			fetchSuggestions(userMessage, chunks,selectLanguage);
+			setChunks(''); // Clear chunks after sending
+			}}
+	}, 1000); // Adjust the delay as needed
 
-	// useEffect(() => {
-	// 	setMessages((prevMessages) => [
-	// 		...prevMessages,
-	// 		{ text: content, isUser: false },
-	// 	]);
-	// }, [content]);
+		return () => clearTimeout(timerId);
+	}, [chunks, userMessage]);
 
 	const handleSuggestionClick = (suggestion) => {
 		if (!isWriting) {
