@@ -66,7 +66,7 @@ const ChatHeader = ({
 	return (
 		<div className='flex justify-between items-center absolute top-0 left-0 my-1 w-full pr-5 pl-3'>
 			<div className='flex items-baseline '>
-				<button
+				{/* <button
 					onClick={toggleAudioSelector}
 					className='bg-[#002EFF] text-white p-1 rounded-full mr-1'>
 					{isAudioOn ? (
@@ -126,7 +126,7 @@ const ChatHeader = ({
 							/>
 						</svg>
 					)}
-				</button>
+				</button> */}
 
 				{/* Bouton Changer de Langue */}
 				<button className=' mx-1 flex items-baseline'>
