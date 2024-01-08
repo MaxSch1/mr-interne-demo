@@ -92,7 +92,7 @@ setChunks(data);
 			console.log((`LANGUE: ${selectedLanguage}`));
 			// console.log(`lang: ${selectedLanguage}`)
 			const response = await fetch(
-				'https://demo-mr-03-01-ylhttgdmua-ew.a.run.app/stream',
+				'https://demo-mr-07-01-large-ylhttgdmua-ew.a.run.app/stream',
 				{
 					method: 'POST',
 					headers: {
