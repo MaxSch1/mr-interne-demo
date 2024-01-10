@@ -47,9 +47,9 @@ const LanguageSelector = ({ onLanguageChange }) => {
 							<path
 								d='M9.50016 1.58325C11.4803 3.75111 12.6057 6.56445 12.6668 9.49992C12.6057 12.4354 11.4803 15.2487 9.50016 17.4166C7.51998 15.2487 6.39465 12.4354 6.3335 9.49992C6.39465 6.56445 7.51998 3.75111 9.50016 1.58325Z'
 								stroke='#002EFF'
-								stroke-width='2'
-								stroke-linecap='round'
-								stroke-linejoin='round'
+								strokeWidth='2'
+								strokeLinecap='round'
+								strokeLinejoin='round'
 							/>
 						</g>
 						<defs>

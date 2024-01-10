@@ -89,7 +89,11 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 		try {
 			const formData = new FormData();
 			formData.append('file', audioFile, 'audio.mp3');
-			console.log('Contenu de FormData :', formData.get('file'));
+			formData.append('Content-Type', 'audio/mp3');
+			for (const entry of formData.entries()) {
+				console.log(entry);
+}
+
 			const response = await axios.post(
 				'https://cbmr-tts-stt-v2.azurewebsites.net/api/STT?code=lF1fymi58KpeeU1O3HOkd5cGi3Kqw4eHoGEOQkaFHwQpAzFuZ0rk2w==',
 				formData,
@@ -99,7 +103,7 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 					},
 				}
 			);
-
+console.log(response);
 			if (response.data && response.data.text_transcript) {
 				setInputText(response.data.text_transcript);
 			}
