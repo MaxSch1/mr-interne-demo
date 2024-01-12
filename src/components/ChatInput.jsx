@@ -57,7 +57,7 @@ const ChatInput = ({ addMessage, disabled, selectLanguage }) => {
 				};
 
 				recorder.onstop = () => {
-					const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+					const audioBlob = new Blob(audioChunks);
 					if (audioRef.current) {
 						const audioUrl = URL.createObjectURL(audioBlob);
 						audioRef.current.src = audioUrl;
