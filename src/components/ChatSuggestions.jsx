@@ -12,15 +12,13 @@ const ChatSuggestion = ({ suggestion, onClick }) => {
         {suggestion}
     </button>
 </div>
-
-
 	);
 };
 
 const ChatSuggestions = ({ suggestions, onSuggestionClick }) => {
 	return (
 		<div className='mx-2 sm:mx-8 lg:mx-24 '>
-			<div className='flex  md:flex-wrap w-full overflow-x-auto no-scrollbar '>
+			{/* <div className='flex  md:flex-wrap w-full overflow-x-auto no-scrollbar '>
 				{Object.values(suggestions).map((suggestion, index) => (
 					<ChatSuggestion
 						key={index}
@@ -28,7 +26,7 @@ const ChatSuggestions = ({ suggestions, onSuggestionClick }) => {
 						onClick={onSuggestionClick}
 					/>
 				))}
-			</div>
+			</div> */}
 		</div>
 	);
 };

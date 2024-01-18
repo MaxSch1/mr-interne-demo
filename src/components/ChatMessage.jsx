@@ -12,6 +12,7 @@ const ChatMessage = ({
 	selectLanguage,
 	onDataFromChild,
 	handleIsWriting,
+	loader,
 }) => {
 	const [userAgreed, setUserAgreed] = useState(false);
 	const [userDisagreed, setUserDisagreed] = useState(false);
@@ -47,41 +48,44 @@ const ChatMessage = ({
 	};
 	const [agreeButtonText, setAgreeButtonText] = useState('I Agree');
 	const [disagreeButtonText, setDisagreeButtonText] = useState('I Disagree');
-
+const [loaderText, setloaderText] = useState('Je cherche dans mes sources');
 	useEffect(() => {
 		// Mettez en place une logique pour changer le texte des boutons en fonction de la langue sélectionnée
 		switch (selectLanguage) {
 			case 'en':
 				setAgreeButtonText('I Agree');
 				setDisagreeButtonText('I Disagree');
+				setloaderText('Searching in my sources');
 				break;
 			case 'de':
 				setAgreeButtonText('Ich stimme zu');
 				setDisagreeButtonText('Ich stimme nicht zu');
+				setloaderText('Ich suche in meinen Quellen');
 				break;
 			case 'nl':
 				setAgreeButtonText('Ik ga akkoord');
 				setDisagreeButtonText('Ik ga niet akkoord');
+				setloaderText('Aan het zoeken in mijn bronnen');
 				break;
 			case 'fr':
 				setAgreeButtonText("Je suis d'accord");
 				setDisagreeButtonText("Je ne suis pas d'accord");
+				setloaderText('Je cherche dans mes sources');
 				break;
 			default:
 				setAgreeButtonText("Je suis d'accord"); // La langue par défaut
 				setDisagreeButtonText("Je ne suis pas d'accord"); // La langue par défaut
+				setloaderText('Je cherche dans mes sources');
 		}
 	}, [selectLanguage]);
 
 	const [data, setData] = useState('');
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(loader);
 
 	useEffect(() => {
 		const fetchData = async (response) => {
 			try {
-				setLoading(true);
-
-				const reader = response.body.getReader();
+								const reader = response.body.getReader();
 				const decoder = new TextDecoder();
 
 				while (true) {
@@ -111,7 +115,7 @@ const ChatMessage = ({
 						}
 					});
 				}
-setLoading(false);
+
 				handleIsWriting(loading);
 			} catch (error) {
 				setLoading(false);
@@ -172,7 +176,7 @@ setLoading(false);
 					</svg>
 				) : (
 					<img
-						src='https://ui-chatbot1.s3.eu-north-1.amazonaws.com/WhatsApp+Image+2024-01-04+%C3%A0+18.29+1+(1).png'
+						src='https://ui-chatbot1.s3.eu-north-1.amazonaws.com/LOGO-mr-30.svg'
 						alt=''
 						className=' mx-1 my-2 min-w-min absolute top-0 -left-5'
 					/>
@@ -180,9 +184,9 @@ setLoading(false);
 				<div className='flex-col py-2 pl-6 mb-5 w-full'>
 					<div className='flex w-full'>
 						<span className='text-base font-bold block align-middle whitespace-nowrap'>
-							{message.isUser ? 'You' : 'Liloo AI'}
+							{message.isUser ? 'You' : 'MR Agent'}
 						</span>
-						{message.isUser && isLastMessage
+						{/* {message.isUser && isLastMessage
 							? ''
 							: isLastMessage && (
 									<TextToSpeechButton
@@ -191,18 +195,25 @@ setLoading(false);
 										audioOn={audioOn}
 										selectLanguage = {selectLanguage}
 																			/>
-							  )}
+							  )} */}
 					</div>
 					<span className='text-justify max-w-prose text-base font-medium '>
 						{message.isUser ? (
 							message.text
 						) : loading ? (
-							<i>Fetching data...</i>
+							<span>
+								{loaderText}
+								<img
+									src='https://ui-chatbot1.s3.eu-north-1.amazonaws.com/loader.gif'
+									alt='Loading GIF'
+									className=''
+								/>
+							</span>
 						) : (
 							data
 						)}
 					</span>
-					{!message.isUser && isLastMessage && (
+					{/* {!message.isUser && isLastMessage && (
 						<div className='mt-2 text-white flex sm:block'>
 							{userAgreed || userDisagreed ? (
 								<button
@@ -228,7 +239,7 @@ setLoading(false);
 								</>
 							)}
 						</div>
-					)}
+					)} */}
 				</div>
 			</div>
 		</div>

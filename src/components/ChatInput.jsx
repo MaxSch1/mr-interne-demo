@@ -134,6 +134,42 @@ console.log(response);
 
 		return () => clearInterval(interval);
 	}, []);
+const textareaRef = useRef(null);
+
+	const handleTextareaChange = (e) => {
+		setInputText(e.target.value);
+		autoExpandTextarea();
+	};
+
+	const autoExpandTextarea = () => {
+		if (textareaRef.current) {
+			textareaRef.current.style.height = 'auto'; // Réinitialisez d'abord à la hauteur par défaut
+			textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+			const lineCount =
+				(textareaRef.current.value.match(/\n/g) || []).length + 1;
+
+			// Définissez un seuil, par exemple 5 lignes, au-delà duquel vous souhaitez des bords carrés
+			const shouldHaveRoundedBorders = lineCount > 1;
+
+			// Appliquez la classe de bordure en conséquence
+			textareaRef.current.classList.toggle(
+				'rounded-md',
+				shouldHaveRoundedBorders
+			);
+			textareaRef.current.classList.toggle(
+				'rounded-full',
+				!shouldHaveRoundedBorders
+			); // Ajustez la hauteur en fonction du contenu
+		}
+	};
+
+	const handleKeyDown = (e) => {
+		if (e.key === 'Enter' && !e.shiftKey) {
+			e.preventDefault(); // Empêche un saut de ligne sur "Enter"
+			textareaRef.current.style.height = 'auto';
+handleSubmit(e);
+		}
+	};
 
 	return (
 		<form
@@ -142,14 +178,13 @@ console.log(response);
 				disabled ? 'opacity-50' : ''
 			}`}>
 			<div className='relative w-full md:mx-6 '>
-				<label htmlFor='audioFileInput'>
-					<button
+									{/* <button
 						type='button'
 						onClick={recording ? stopRecording : startRecording}
 						disabled={disabled}
 						className={`bg-[#002EFF] text-white rounded-full  py-2 ${
 							recording ? 'w-full h-full  pl-4 ' : 'mr-2 ml-1 my-1 px-3'
-						} absolute top-0 flex items-center `}>
+						} absolute left-0 bottom-1.5 flex items-center `}>
 						<svg
 							width='11'
 							height='18'
@@ -186,8 +221,8 @@ console.log(response);
 							/>
 						</svg>
 						{recording ? <>{<RectangleGenerator count={80} />}</> : ''}
-					</button>
-				</label>
+					</button> */}
+				
 				<input
 					id='audioFileInput'
 					type='file'
@@ -195,22 +230,27 @@ console.log(response);
 					onChange={() => {}}
 					className='hidden'
 				/>
-				<input
-					type='text'
+				<textarea
+					ref={textareaRef}
 					value={inputText}
-					onChange={(e) => setInputText(e.target.value)}
-					maxLength={750}
+					onChange={handleTextareaChange}
+					onKeyDown={handleKeyDown}
+					maxLength={250}
 					placeholder={placeholder}
-					className={` ${
-						recording ? ' bg-[#002EFF]' : 'bg-white '
-					} w-full  p-2 pl-12 pr-12 rounded-full  italic-placeholder border-[1px] focus:outline-none `}
-					style={{ boxShadow: '3px 4px 3px rgba(0, 0, 0, 0.2)' }}
-					disabled={disabled} // pl-10 pour laisser de l'espace pour le bouton audio
+					rows={1}
+					className={`${
+						recording ? 'bg-[#002EFF]' : 'bg-white '
+					} w-full p-2 pl-12 pr-12 rounded-full italic-placeholder border-[1px] focus:outline-none resize-none`}
+					style={{
+						boxShadow: '3px 4px 3px rgba(0, 0, 0, 0.2)',
+						overflow: 'hidden',
+					}}
+					disabled={disabled}
 				/>
 				<button
 					type={recording ? 'button' : 'submit'}
                     onClick={recording ? stopRecording : handleSubmit}
-					className={`absolute right-0 text-white rounded-full py-2 px-1.5 mr-1 my-1  ${
+					className={`absolute right-0 bottom-1.5  text-white rounded-full py-2 px-1.5 mr-1 my-1  ${
 						recording ? 'bg-white ' : 'bg-[#002EFF] '
 					}`}>
 						{recording ? (

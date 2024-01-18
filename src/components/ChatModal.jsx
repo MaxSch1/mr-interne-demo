@@ -19,25 +19,23 @@ const ChatModal = () => {
 			'Quelles sont vos solutions pour la crise du logement ?',
 			'Comptez-vous augmenter ou diminuer les impôts ?',
 	]);
-	// const [prevContent, setPrevContent] = useState('');
-	// const [prevUserMessage, setPrevUserMessage] = useState('');
 	const [selectLanguage, setSelectLanguage] = useState('fr');
 	const [isAudioOn, setIsAudioOn] = useState(true);
 	const [history, setHistory] = useState([]);
 	const [isWriting, setIsWriting] = useState(false);
 	const [generatedID, setGeneratedID] = useState(null);
 	const [showDisclaimer, setShowDisclaimer] = useState(true);
-	// const [dataFromChild, setDataFromChild] = useState('');
+	
 	const [chunks, setChunks] = useState('');
 
 	const handleDataFromChild = (data) => {
 		// La fonction de rappel pour remonter les données du composant enfant
-		// setDataFromChild(data);
+		
 setChunks(data);
 	};
 		const handleLanguageChange = (selectedLanguage) => {
 		setSelectLanguage(selectedLanguage);
-		console.log((`LANGUEtestla: ${selectLanguage}`));
+		// console.log((`LANGUEtestla: ${selectLanguage}`));
 	};
 
 	const handleAudioChange = (audioOn) => {
@@ -58,7 +56,6 @@ setChunks(data);
 			setUserMessage(text);
 			}
 		}
-
 	};
 	const fecthHistoriqueMessage = async () => {
 		try {
@@ -85,14 +82,12 @@ setChunks(data);
 			// Gérer les erreurs d'API
 		}
 	};
+	const [loader, setloader] = useState(false);
 	const sendUserMessageToAPI = async (text, generatedID,selectedLanguage) => {
 		try {
-			console.log(`question: ${text}`);
-			console.log((`ChatIDa: ${generatedID}`));
-			console.log((`LANGUE: ${selectedLanguage}`));
-			// console.log(`lang: ${selectedLanguage}`)
+			setloader(true);
 			const response = await fetch(
-				'https://demo-mr-07-01-large-ylhttgdmua-ew.a.run.app/stream',
+				'https://cbmr-demo-int-18-01-ylhttgdmua-ew.a.run.app/stream',
 				{
 					method: 'POST',
 					headers: {
@@ -118,6 +113,7 @@ setChunks(data);
 				...prevMessages,
 				{ text: response, isUser: false },
 			]);
+setloader(false);
 		} catch (error) {
 			console.error('Erreur lors de la requête API :', error);
 			// Gérer les erreurs d'API
@@ -128,13 +124,13 @@ setChunks(data);
 		userMessage,
 		aiResponse
 	  ) => {
-		// console.log("prevUsermessage", prevUserMessage);
+		// // console.log("prevUsermessage", prevUserMessage);
 		
-		// Check if userMessage or aiResponse is empty, or if userMessage hasn't changed
-		if (!userMessage.trim() || !aiResponse.trim()) {
-		  console.log("Conditions not met for sending message to API");
-		  return; // Exit the function early
-		}
+		// // Check if userMessage or aiResponse is empty, or if userMessage hasn't changed
+		// if (!userMessage.trim() || !aiResponse.trim()) {
+		//   console.log("Conditions not met for sending message to API");
+		//   return; // Exit the function early
+		// }
 	  
 		try {
 		  console.log("FROM USER: ", userMessage);
@@ -181,11 +177,11 @@ setChunks(data);
 	useEffect(() => {
 		const timerId = setTimeout(() => {
 			if (chunks !== '') {
-				if (isWriting) {
+
 			sendUserMessageAndAIResponseToHistory(userMessage, chunks);
 			fetchSuggestions(userMessage, chunks,selectLanguage);
 			setChunks(''); // Clear chunks after sending
-			}}
+			}
 	}, 1000); // Adjust the delay as needed
 
 		return () => clearTimeout(timerId);
@@ -213,7 +209,6 @@ setChunks(data);
 		}
 // eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [showDisclaimer, generatedID]);
-
 
 	const handleIDGeneration = (id) => {
 		setGeneratedID(id);
@@ -260,6 +255,7 @@ setChunks(data);
 						selectLanguage={selectLanguage}
 						onDataFromChild={handleDataFromChild}
 						handleIsWriting={handleIsWriting}
+						loading={loader}
 					/>
 					<ChatSuggestions
 						onSuggestionClick={handleSuggestionClick}
@@ -286,7 +282,7 @@ setChunks(data);
 							<span className='underline ml-1 flex-shrink-0'> Meridiem</span>
 						</a>
 						<span className='text-xs my-1 max-sm:hidden text-gray-400 mx-2 md:mx-7'>
-							Ce chat est en version beta, certaines fonctionnalités et éléments de l'interface ont volontairement été temporairement désactives.
+							Ce chat est en version beta, nous vous recommandons vivement de nous partager vos suggestions ou toute erreur que vous rencontrez.
 						</span>
 					</div>
 
