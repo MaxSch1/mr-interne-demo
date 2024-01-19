@@ -131,7 +131,7 @@ setloader(false);
 		//   console.log("Conditions not met for sending message to API");
 		//   return; // Exit the function early
 		// }
-	  
+		if (userMessage && aiResponse && !isWriting) {
 		try {
 		  console.log("FROM USER: ", userMessage);
 		  console.log("FROM AI: ", aiResponse);
@@ -150,9 +150,13 @@ setloader(false);
 		  console.error("Erreur lors de la requête API pour l'historique :", error);
 		  // Handle API errors for history here
 		}
+	} else {
+		console.log("User message or AI response is empty, not sending to API.");
+	}
 	  };
 
 	const fetchSuggestions = async (userMessage, IAmessage,selectedLanguage) => {
+		if (userMessage && IAmessage && !isWriting) {
 		try {
 			console.log((`LANGUESUGG: ${selectedLanguage}`));
 			const response = await axios.post(
@@ -172,6 +176,9 @@ setloader(false);
 			console.error('Erreur lors de la récupération des suggestions :', error);
 			// Gérer les erreurs d'API
 		}
+	} else {
+		console.log("User message or AI response is empty, not sending to API.");
+	}
 	};
 
 	useEffect(() => {

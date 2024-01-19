@@ -176,7 +176,7 @@ const [loaderText, setloaderText] = useState('Je cherche dans mes sources');
 					</svg>
 				) : (
 					<img
-						src='https://ui-chatbot1.s3.eu-north-1.amazonaws.com/LOGO-mr-30.svg'
+						src='https://ui-chatbot1.s3.eu-north-1.amazonaws.com/LOGO-mr-30.png'
 						alt=''
 						className=' mx-1 my-2 min-w-min absolute top-0 -left-5'
 					/>
